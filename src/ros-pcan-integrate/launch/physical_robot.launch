@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+   
+    
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ros-pcan-integrate)/rviz/physical_robot_pos.rviz"/>
+
+    <node name="socket_client_node" pkg="ros-pcan-integrate" type="socket_client.py" output="screen"/>   
+   
+</launch>

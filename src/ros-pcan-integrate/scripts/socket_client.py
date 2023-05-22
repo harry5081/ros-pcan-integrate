@@ -7,7 +7,7 @@ import pickle
 
 import rospy
 from nav_msgs.msg import Odometry
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Twist, Quaternion
 import tf
 
 
@@ -52,9 +52,10 @@ class rosSocketNode():
         print(odom_msg.pose.pose.position.x)
         print(odom_msg.pose.pose.position.y)
         print()
+        # quan = tf.transformations.quaternion_from_euler(0,0, jdata["theta_Z"])
         # odom_quat = tf.Quaternion.createQuaternionMsgFromYaw(jdata["theta_Z"])
         # odom_msg.pose.pose.orientation = odom_quat
-
+        odom_msg.pose.pose.orientation = Quaternion(*tf.transformations.quaternion_from_euler(0,0, jdata["theta_Z"]))
         self.odom_pub.publish(odom_msg)
 
     
